@@ -8,19 +8,18 @@ import java.util.HashMap;
 public class Program {
     public static HashMap<Integer, Product> inventory = new HashMap<Integer, Product>();
     public static void main(String[] args) {
-//        loadInventory();
-        HashMap<String, Product> product = getProduct();
-        String itemName = "Box of nails";
-        Product foundItem = product.get(itemName);
-        System.out.println(foundItem);
+        HashMap<String, Product> productCollection = loadInventory();
+        String itemName = "dsffsdf";
+        Product product = productCollection.get(itemName);
+        System.out.println(product);
         System.out.println();
 
-        printItems(product);
+        printItems(productCollection);
 
     }
 
-    public static HashMap<String, Product> getProduct() {
-        HashMap<String,Product> items = new HashMap<>();
+    public static HashMap<String, Product> loadInventory() {
+        HashMap<String,Product> productCollection = new HashMap<>();
 
         try {
             FileReader fileReader = new FileReader("inventory.csv");
@@ -33,14 +32,14 @@ public class Program {
                 currentProduct.setId(Integer.parseInt(itemAttributes[0]));
                 currentProduct.setName(itemAttributes[1]);
                 currentProduct.setPrice(Double.parseDouble(itemAttributes[2]));
-                items.put(currentProduct.getName() ,currentProduct);
+                productCollection.put(currentProduct.getName() ,currentProduct);
             }
             bufferedReader.close();
         } catch (IOException e) {
             System.out.println("Error reading the inventory from the file.");
             e.printStackTrace();
         }
-        return items;
+        return productCollection;
     }
     public static void printItems(HashMap<String, Product> items){
         for(Product item: items.values()) {
@@ -48,7 +47,4 @@ public class Program {
                     item.getPrice() + " }");
         }
     }
-//    public static HashMap<Integer, Product> loadInventory(){
-//        return;
-//    }
 }
