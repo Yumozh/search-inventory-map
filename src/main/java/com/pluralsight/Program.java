@@ -10,7 +10,12 @@ public class Program {
     public static void main(String[] args) {
 //        loadInventory();
         HashMap<String, Product> product = getProduct();
+        String itemName = "Box of nails";
+        Product foundItem = product.get(itemName);
+        System.out.println(foundItem);
+        System.out.println();
 
+        printItems(product);
 
     }
 
@@ -36,6 +41,12 @@ public class Program {
             e.printStackTrace();
         }
         return items;
+    }
+    public static void printItems(HashMap<String, Product> items){
+        for(Product item: items.values()) {
+            System.out.println("{ Item name: " + item.getName() + ", ID: " + item.getId() + ", Price: $" +
+                    item.getPrice() + " }");
+        }
     }
 //    public static HashMap<Integer, Product> loadInventory(){
 //        return;
